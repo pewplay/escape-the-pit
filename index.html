@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Escape the Pit</title>
+    <meta name="description" content="Escape the pit inhabited by biologically improbable snakes: a turn-based 3D puzzle game.">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="scr" class="nopsp">
+        <div id="psp">
+            <div id="fl"></div>
+            <div id="cells"></div>
+            <div class="c pl" data-x="0" data-y="4">
+                <div class="i"></div>
+                <div class="j"></div>
+                <div class="k"></div>
+                <div class="l"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="hud">
+        <div id="xdp">Depth: <span id="dp">9</span></div>
+        <div id="msg">Escape the Pit</div>
+    </div>
+
+    <div id="fu" aria-live="polite">Caught and thrown back</div>
+
+    <div id="gg">
+        <div>You escaped the pit!</div>
+        <button id="again" type="button">Play again</button>
+        <small id="againHint">or press 9</small>
+    </div>
+
+    <div id="hlp">Controls: arrow keys, WASD or HJKL</div>
+
+    <div id="opts">
+        <button id="mus" type="button" aria-pressed="false" aria-label="Music" title="Music">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>
+                <path class="slash" d="M3 3l18 18"/>
+            </svg>
+        </button>
+        <button id="snd" type="button" aria-pressed="true" aria-label="Sound effects" title="Sound effects">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/>
+                <path class="slash" d="M3 3l18 18"/>
+            </svg>
+        </button>
+    </div>
+
+    <script src="js/astar.js"></script>
+    <script src="js/sfxr.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

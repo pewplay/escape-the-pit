@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pewplay/pewplay/main/schema/game.schema.json",
+  "title": "Escape the Pit",
+  "description": "Outwit hungry 3D snakes in a turn-based grid puzzle and climb nine levels out of the pit, free to play in your browser.",
+  "about": "Escape the Pit drops you, a little green cube, at the bottom of a pit full of biologically improbable snakes. Each level is a 9x9 board seen in tilted 3D, and your only way up is the orange square on the far side. Every time you take a step, each snake slithers one square along the shortest path towards you, and its body follows like a train.\n\nThe game is entirely turn-based, so you always have time to think. Snakes cannot cross their own tails or each other, and they never enter the exit square, so the trick is to lure them into blocking themselves, waste a turn by bumping into a wall, or slip through a gap one move before it closes. Get caught and you are thrown back one level, which keeps the tension high all the way to the surface.\n\nOriginally created by Mark Vasilkov for js13kGames 2014.",
+  "howToPlay": "Move your green cube one square at a time to the orange exit on the right side of the board. After each of your moves, every snake moves one square towards you. If a snake's head or body touches you, you are thrown back one level. Clear all nine levels, from depth 9 up to the surface, to escape the pit.",
+  "controls": [
+    { "input": "Arrow keys / WASD / HJKL", "action": "Move one square" },
+    { "input": "Tap", "action": "Move towards the tapped square" },
+    { "input": "Swipe", "action": "Move one square in the swipe direction" },
+    { "input": "9", "action": "Restart from depth 9" }
+  ],
+  "tips": [
+    "Walking into the edge of the board keeps you in place but still spends a turn, which is handy for letting a snake move out of your way.",
+    "Snakes treat each other's bodies as walls, so you can often lead one snake into trapping the other.",
+    "The orange exit square is off-limits to snakes, so once you have a clear line to it, they cannot cut you off there.",
+    "Before each move, count how many squares the nearest snake head needs to reach you; if it is more than your distance to the exit, just run."
+  ],
+  "faq": [
+    {
+      "question": "Is Escape the Pit free to play?",
+      "answer": "Yes, it is completely free and runs right in your browser with nothing to install."
+    },
+    {
+      "question": "Can I play Escape the Pit on a phone or tablet?",
+      "answer": "Yes. Tap a square next to your cube or swipe to move; the board scales to fit both portrait and landscape screens."
+    },
+    {
+      "question": "What happens when a snake catches me?",
+      "answer": "You are thrown back one level, so you have to clear the previous board again before retrying the one that caught you."
+    }
+  ],
+  "category": "Puzzle",
+  "tags": ["puzzle", "turn-based", "snakes", "3d", "strategy", "js13k"],
+  "author": "Mark Vasilkov",
+  "playMode": "SinglePlayer",
+  "orientation": "any",
+  "cover": "cover.png",
+  "screenshots": ["screenshots/1.png", "screenshots/2.png", "screenshots/3.png"],
+  "added": "2026-10-01",
+  "draft": false
+}

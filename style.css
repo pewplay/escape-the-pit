@@ -1,0 +1,240 @@
+/* Escape the Pit — styles (based on the original pub/escape.css by Mark Vasilkov) */
+
+:root {
+    --s: 1;              /* board scale, set by game.js */
+    --ink: #89867e;
+    --paper: #fffffa;
+    --hud: clamp(20px, min(6vw, 7vh), 44px);
+}
+
+html, body {
+    height: 100%;
+    height: 100dvh;
+    margin: 0;
+    overflow: hidden;
+    background: var(--paper);
+}
+
+body {
+    color: var(--ink);
+    font: 100 var(--hud)/1.1 "Segoe UI", "Helvetica Neue", Roboto, "Noto Sans", Arial, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: none;
+}
+
+#scr {
+    background: var(--paper);
+    inset: 0;
+    overflow: hidden;
+    perspective: calc(500px * var(--s));
+    position: fixed;
+    touch-action: none;
+    transition: perspective 1s cubic-bezier(0, 1, 0.2, 1);
+}
+
+#scr.nopsp {
+    perspective: calc(9999px * var(--s));
+    transition: perspective 1s cubic-bezier(1, 0, 1, 0.2);
+}
+
+#psp, #fl {
+    height: 412px;
+    position: absolute;
+    width: 412px;
+}
+
+#fl { background-size: 412px 412px; }
+
+#psp {
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+#psp.noanim, #psp.noanim .c, #scr.noanim { transition: none !important; }
+
+/* invisible tap targets, one per square */
+.cell {
+    border-radius: 3px;
+    height: 44px;
+    position: absolute;
+    width: 44px;
+}
+
+.touch .cell.adj { background: rgba(153, 204, 0, 0.28); }
+.touch .cell.adj.exit { background: rgba(153, 204, 0, 0.45); }
+
+/* cubes */
+.c, .i, .j, .k, .l {
+    height: 44px;
+    pointer-events: none;
+    position: absolute;
+    transform-style: preserve-3d;
+    width: 44px;
+}
+
+.c { transition: left 200ms, top 200ms, opacity 0.5s, transform 0.5s; }
+
+.i { transform:                                  translateZ(44px); }
+.j { transform: translateZ(22px) rotateY(-90deg) translateZ(22px); }
+.k { transform: translateZ(22px) rotateX(-90deg) translateZ(22px); }
+.l { transform: translateZ(22px) rotateY( 90deg) translateZ(22px); }
+
+.pl .i { background: #9c0; }
+.pl .k { background: #8cbf00; }
+.pl .j, .pl .l { background: #80b300; }
+
+.enr .i { background: #f44; }
+.enr .k { background: #f23333; }
+.enr .j, .enr .l { background: #e52222; }
+
+.enb .i { background: #3bf; }
+.enb .k { background: #26b3f2; }
+.enb .j, .enb .l { background: #1aaae5; }
+
+.h {
+    opacity: 0;
+    transform: translateZ(250px);
+}
+
+.t0 { transform: scale3d(0.64, 0.64, 0.64); }
+.t1 { transform: scale3d(0.55, 0.55, 0.55); }
+.t2 { transform: scale3d(0.48, 0.48, 0.48); }
+.t3 { transform: scale3d(0.4, 0.4, 0.4); }
+
+.h.t0 { transform: scale3d(0.64, 0.64, 0.64) translateZ(250px); }
+.h.t1 { transform: scale3d(0.55, 0.55, 0.55) translateZ(250px); }
+.h.t2 { transform: scale3d(0.48, 0.48, 0.48) translateZ(250px); }
+.h.t3 { transform: scale3d(0.4, 0.4, 0.4) translateZ(250px); }
+
+/* HUD */
+
+#hud {
+    align-items: flex-end;
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.8em;
+    justify-content: space-between;
+    left: 0;
+    padding: 0 max(0.55em, env(safe-area-inset-right)) max(0.55em, env(safe-area-inset-bottom)) max(0.55em, env(safe-area-inset-left));
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    white-space: nowrap;
+}
+
+#dp { color: #f44; }
+
+#msg { margin-left: auto; }
+
+#fu, #gg {
+    align-items: center;
+    background: var(--ink);
+    box-sizing: border-box;
+    color: var(--paper);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    left: 0;
+    min-height: 2.85em;
+    opacity: 0;
+    padding: 0.3em 16px;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.9s;
+}
+
+#fu.s { opacity: 1; }
+
+#gg {
+    background: #ff0080;
+    gap: 0.35em;
+    padding: 0.5em 16px;
+}
+
+#gg.on {
+    opacity: 0.96;
+    pointer-events: auto;
+}
+
+#gg button {
+    background: var(--paper);
+    border: 0;
+    border-radius: 999px;
+    color: #ff0080;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: clamp(16px, 0.5em, 22px);
+    font-weight: 400;
+    min-height: 44px;
+    padding: 0 1.4em;
+}
+
+#gg small {
+    font-size: clamp(14px, 0.4em, 18px);
+    font-weight: 400;
+    opacity: 0.85;
+}
+
+#hlp {
+    align-items: center;
+    background: var(--ink);
+    border-bottom: 5px solid var(--paper);
+    box-sizing: border-box;
+    color: var(--paper);
+    display: flex;
+    font-size: clamp(15px, 2.6vw, 25px);
+    justify-content: center;
+    left: 0;
+    min-height: 56px;
+    padding: 4px 112px 4px 16px;
+    pointer-events: none;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    transform: translateY(0);
+    transition: transform 1s;
+}
+
+@media (min-width: 640px) {
+    #hlp { padding-left: 112px; }
+}
+
+#hlp.off { transform: translateY(-110%); }
+
+#opts {
+    display: flex;
+    gap: 8px;
+    position: fixed;
+    right: max(8px, env(safe-area-inset-right));
+    top: 6px;
+}
+
+#opts button {
+    align-items: center;
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 50%;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    height: 44px;
+    justify-content: center;
+    padding: 0;
+    width: 44px;
+}
+
+#opts button svg { height: 24px; width: 24px; }
+#opts button .slash { display: none; }
+#opts button[aria-pressed="false"] { opacity: 0.6; }
+#opts button[aria-pressed="false"] .slash { display: inline; }
+#opts button:focus-visible, #gg button:focus-visible { outline: 3px solid #fb3; outline-offset: 2px; }
